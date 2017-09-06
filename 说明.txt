@@ -1,0 +1,17 @@
+https://my.oschina.net/u/238296/blog/598415
+https://github.com/EugenePig/ik-analyzer-solr5
+
+基于2012-FF Hotifx 1版本修改的，增加了对lucene 5以上的版本的支持
+maven打好的jar包，拷贝到solr的对应lib目录中
+
+修改solr_home目录中的schema.xml配置文件
+	<fieldType name="text_ik2" class="solr.TextField">   
+	  <analyzer type="index">
+		<tokenizer class="org.wltea.analyzer.lucene.IKTokenizerFactory" useSmart="false" />
+	  </analyzer>
+	  <analyzer type="query">
+		<tokenizer class="org.wltea.analyzer.lucene.IKTokenizerFactory" useSmart="true" />
+	  </analyzer>
+	</fieldType>
+	
+访问solr控制台,analysis,选择对应fieldType,测试,Index是最小分词,Query是最大分词
